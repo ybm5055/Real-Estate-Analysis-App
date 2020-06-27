@@ -69,6 +69,16 @@ def cash_on_cash(monthly_income, down_payment):
  #Streamlit UI 
 st.title('Real Estate Investment Analysis App')
 
+text = """
+    ## Note: ##
+    ---------------------
+    **This App was created because the author was too lazy and bored to open the excel model, and decided to spend hours on creating an app for the first time instead**\n
+    **If you are a Real Estate Investor and cash flow is your primary goal, feel free to use this for a quick analysis on COC return and Cap Rate **\n
+    **He did think it was a pretty fun experice though and streamlit is cool**\n
+    ---------------------
+    """
+    st.sidebar.markdown(text)
+
 #insert image cuz we don't like too much white space
 from PIL import Image
 import requests
@@ -134,3 +144,14 @@ st.write("The **cap rate** is: ")
 st.write(cap_return)
 st.write("The **cash on cash return rate** is: ")
 st.write(cash_percent)
+
+st.sidebar.subheader("About Author")
+    text = """\
+    - Name: Brian Yu
+    - Occupation: Analytics Consultant
+    - Interests: Investing and fitness
+    
+    - [**Linkedin**](https://www.linkedin.com/in/brian-boming-yu-00206994/)
+    **Thanks for checking this out!**
+      """
+    st.sidebar.markdown(text)
