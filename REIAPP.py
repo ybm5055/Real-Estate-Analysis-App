@@ -73,9 +73,9 @@ st.title('Real Estate Investment Analysis App')
 text = """
     ## Overview: ##
     ---------------------
-    This App was created because the author was too lazy and bored to open the excel model for a deal analysis, and decided to spend hours on creating an app with streamlit for the first time instead :upside_down_face:\n
+    This App was created because the author was too lazy and bored to open the excel model for a deal analysis, and decided to spend hours on creating an app with streamlit for the first time instead:upside_down_face:\n
     He did think it was a fun experience and streamlit is pretty cool.\n
-    If you are a real estate investor and want to take a break from the spreadsheets, feel free to use this for a quick analysis on the COC return and Cap Rate by simply entering the variables below:\n
+    If you are a real estate investor and want to take a break from the spreadsheets, feel free to use this for a quick analysis on the COC return and Cap Rate by simply entering the variables below:point_down:\n
     ---------------------
     """
 st.sidebar.markdown(text)
@@ -91,18 +91,18 @@ st.image(img,use_column_width=True)
 
 st.subheader("Return Metrics")
 
-st.sidebar.markdown("**Purchase Info:** ")         
+st.sidebar.subheader("Purchase Info: ")         
 
 Price = st.sidebar.text_input(label = "Enter the Purchase Price: ",value ='100000' )#value = trial if trial is not None else '100000')
 down_payment_percent = st.sidebar.slider("Enter the Down Payment Rate (% of rent):   ", 0,100,20)
 Annual_Interest_Rate = st.sidebar.text_input("Enter the Annual Interest Rate (% of rent):   ", value = '3.5')
 
-st.sidebar.markdown("**Revenue Variables:** ")
+st.sidebar.subheader("Revenue Variables: ")
 #st.sidebar.text("Revenue Variables: ") 
 rent_amt = st.sidebar.text_input("Enter the monthly rent price:   ", value = '1000')
 vacancy = st.sidebar.text_input("Enter the vacancy rate (% of rent):   ", value = '5')
 
-st.sidebar.markdown("**Expense Variables:** ")
+st.sidebar.subheader("Expense Variables: ")
 #st.sidebar.text("Expense Variables: ") 
 property_mgmt = st.sidebar.slider("Property management fee(% of rent):   ", 0, 15, 10)
 property_tax = st.sidebar.slider("Property tax rate(% of price):", 0.0, 3.0, 1.5)
@@ -151,7 +151,7 @@ text = """\
    - Name: Brian Yu
    - Occupation: Analytics Consultant
    - Interests: Investing and fitness 
-   - [**Linkedin**](https://www.linkedin.com/in/brian-boming-yu-00206994/)\n
+   - [**Linkedin**](https://www.linkedin.com/in/brian-boming-yu-00206994/)
    **Thanks for checking this out!**
       """
 st.sidebar.markdown(text)
