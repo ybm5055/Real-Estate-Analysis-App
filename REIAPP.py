@@ -73,9 +73,9 @@ st.title('Real Estate Investment Analysis App')
 text = """
     ## Overview: ##
     ---------------------
-    This App was created because the author was too lazy and bored to open the excel model for a deal analysis, and decided to spend hours on creating an app with streamlit for the first time instead:upside_down_face:\n
+    This App was created because the author was too lazy and bored to open the excel model for a deal analysis, and decided to spend hours on creating an app with streamlit for the first time instead :upside_down_face:\n
     He did think it was a fun experience and streamlit is pretty cool.\n
-    If you are a real estate investor and want to take a break from the spreadsheets, feel free to use this for a quick analysis on the COC return and Cap Rate by simply entering the variables below:point_down:\n
+    If you are a real estate investor and want to take a break from the spreadsheets, feel free to use this for a quick analysis on the COC return and Cap Rate by simply entering the variables below :point_down:\n
     ---------------------
     """
 st.sidebar.markdown(text)
@@ -151,7 +151,7 @@ text = """\
    - Name: Brian Yu
    - Occupation: Analytics Consultant
    - Interests: Investing and fitness 
-   - [**Linkedin**](https://www.linkedin.com/in/brian-boming-yu-00206994/)
+   - [**Linkedin**](https://www.linkedin.com/in/brian-boming-yu-00206994/) \n
    **Thanks for checking this out!**
       """
 st.sidebar.markdown(text)
