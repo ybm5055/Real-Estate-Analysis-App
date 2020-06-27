@@ -70,11 +70,11 @@ def cash_on_cash(monthly_income, down_payment):
 st.title('Real Estate Investment Analysis App')
 
 text = """
-    ## Note: ##
+    ## Overview: ##
     ---------------------
-    **This App was created because the author was too lazy and bored to open the excel model for a deal analysis, and decided to spend hours on creating an app for the first time instead**\n
-    **If you are a Real Estate Investor and cash flow is your primary goal, feel free to use this for a quick analysis on COC return and Cap Rate **\n
-    **He did think it was a fun experice and streamlit is cool**\n
+    This App was created because the author was too lazy and bored to open the excel model for a deal analysis, and decided to spend hours on creating an app for the first time instead\n
+    He did think it was a fun experice and streamlit is pretty cool\n
+    If you are a real estate investor and want to take a break from spreadsheets, feel free to use this for a quick analysis on the COC return and Cap Rate by simply entering the variables below\n
     ---------------------
     """
 st.sidebar.markdown(text)
@@ -149,9 +149,8 @@ st.sidebar.subheader("About Author")
 text = """\
    - Name: Brian Yu
    - Occupation: Analytics Consultant
-   - Interests: Investing and fitness
-    
+   - Interests: Investing and fitness 
    - [**Linkedin**](https://www.linkedin.com/in/brian-boming-yu-00206994/)
-    **Thanks for checking this out!**
+   **Thanks for checking this out!**
       """
 st.sidebar.markdown(text)
