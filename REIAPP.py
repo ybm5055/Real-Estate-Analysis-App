@@ -7,21 +7,16 @@ Created on Tue Jun 16 01:05:50 2020
 
 import requests
 from requests import get
-from bs4 import BeautifulSoup
 import pandas as pd
 import itertools
 import streamlit as st
+import numpy as np
 
 
+#Takes Monthly Rent and Expense Variables to calculate the Net Operating Income
 def net_operating(price, rent, tax_rate, property_mgmt, repairs, vacancy,insurance
                   , utilities, broker_fee, HOA):
-    
-    #Takes input as monthly mortgage amount and monthly rental amount
-    #Uses managment expense, amount for repairs, vacancy ratio
-    #Example input: net_operating(1000,1,400,200)
-    #879.33
-    #1000 - 16.67 (tax) - 100 (managment) - 4 (repairs)
-    
+    #Expense Variables
     mortgage_amt = mortgage_monthly(price,30,Annual_Interest_Rate,down_payment_percent)
     prop_managment = rent * (property_mgmt/100)
     prop_tax = (price * (tax_rate/100)/12)
@@ -31,78 +26,50 @@ def net_operating(price, rent, tax_rate, property_mgmt, repairs, vacancy,insuran
     broker_fee = rent * broker_fee/100
     HOA = rent * HOA/100
     insurance = rent * insurance/100
-    #These sections are a list of all the expenses used and formulas for each
     
     net_income = round(rent - prop_managment - prop_tax - prop_repairs - vacancy - mortgage_amt - utilities - insurance - broker_fee - HOA,2)
-    #Summing up expenses
+    #Summary
     output = [prop_managment, prop_tax, prop_repairs, insurance ,vacancy, utilities, broker_fee, HOA,net_income]
   
     
     return output
 
+# Create function to calculate the downpayment amount
 def down_payment(price,down_payment_percent):
-    #This function takes the price and the downpayment rate and returns the downpayment amount 
-    #Ie down_payment(100,20) returns 20
     amt_down = price*down_payment_percent/100
     return(amt_down)
 
+#Create function to calculate the monthly mortgage payment
 def mortgage_monthly(price,years,Annual_Interest_Rate,down_payment_percent):
     
-    
-    #This implements an approach to finding a monthly mortgage amount from the purchase price,
-    #years and percent. 
-    #Sample input: (300000,20,4) = 2422
-    #
-    
-    
+    #formula used: M = P [ i(1 + i)^n ] / [ (1 + i)^n – 1]
     down = down_payment(price,down_payment_percent)
     loan = price - down
     months = years*12
     interest_monthly = (Annual_Interest_Rate/100)/12
-    interest_plus = interest_monthly + 1
-    exponent = (interest_plus)**(-1*months)
-    subtract = 1 - exponent
-    division = interest_monthly / subtract
-    payment = division * loan
+    payment = np.pmt(interest_monthly, months, loan)
     
     
-    return(payment)
+    return(-payment)
 
-
-#def price_mine(url):
-    #Currently this function takes an input of a URL and returns the listing prices 
-    #The site it mines is remax
-    #The input must be a string input, we can reformat the input to force this to work
-    #Next we use regex to remove space and commas and dollar signs 
-  #  headers = ({'User-Agent':
-  #          'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36'})
-   # Link = url
-  #  source= requests.get(Link,headers=headers).text
-  #  html_soup = BeautifulSoup(source, 'html.parser')
-  #  prices = html_soup.find('span',{'class': 'price'}).text
-  #  prices = prices.replace(",", "")
-  #  prices = prices.replace("$", "")
-  #  #prices = prices.replace(" ", "")
- #   prices = float(prices)
- # 
- #   return prices
+#test_number = mortgage_monthly(125000,30,3.5,20)
     
-    
+# Create Cap Rate function which is simply NOI/Price    
 def cap_rate(monthly_income, price):
-    #This function takes net income, and price and calculates the cap rate
-    #
     cap_rate = round(((monthly_income*12) / price)*100,2)
     
     return cap_rate
 
-
+#COC Return which is simply Annual Cash FLOW/how much money down
 def cash_on_cash(monthly_income, down_payment):
     cash_return = round(((monthly_income*12)/down_payment)*100,2)
+    
     return cash_return
 
+ #Streamlit UI 
 st.title('Real Estate Investment Analysis App')
 
-#insert image cuz it's too blank bruh
+#insert image cuz we don't like too much white space
 from PIL import Image
 import requests
 from io import BytesIO
@@ -113,17 +80,7 @@ st.image(img,use_column_width=True)
 
 st.subheader("Return Metrics")
 
-#trial = st.text_input('Enter the Listing URL from Realtor.com to get the price:  ')
-#trial = price_mine(str(trial))
-#st.write("""Any real estate listing can be automatically analyzed""") 
-
-# trial = input("Enter a URL to a Remax listing:   ")
-# rent_amt = input("Enter the monthly rent price:  ")
-# property_tax = input("Enter the tax rate:  ")
-#We have to change these generic inputs to streamlit inputs
-
 st.sidebar.markdown("**Purchase Info:** ")         
-#trial = st.sidebar.text_input("Enter the listing URL:   ")
 
 Price = st.sidebar.text_input(label = "Enter the Purchase Price: ",value ='100000' )#value = trial if trial is not None else '100000')
 down_payment_percent = st.sidebar.slider("Enter the Down Payment Rate (% of rent):   ", 0,100,20)
@@ -160,7 +117,6 @@ HOA = float(HOA)
 down_payment_percent = float(down_payment_percent)
 Annual_Interest_Rate = float(Annual_Interest_Rate)
 
-#listing_notice = price_mine(trial)
 listing_notice = Price
 mortgage = mortgage_monthly(listing_notice,30,Annual_Interest_Rate,down_payment_percent)
 
@@ -170,23 +126,11 @@ net_income = net_operating(Price, rent_amt, property_tax, property_mgmt, repairs
 monthly_cash = net_income[8]
 cap_return = cap_rate(monthly_cash,listing_notice)
 cash_percent = cash_on_cash(monthly_cash,cash)
-# net_operating(rent, tax_rate, mortgage_amt, price):
 
-# print("INPUT: ")
-# print("The price of: ", listing_notice) 
-# print("The monthly rent of : ", rent_amt)
-# print("The tax rate of : ", property_tax)
-# print("OUTPUTS: ")
-# print("Monthly mortgage of  :  ",mortgage)
-# print("Net operating income:  ", net_income)
-# print("Cap rate of:  ", cap_return," % ")
-# print("Cash return rate of:  ", cash_percent, " % ")
-
-#We have to convert the above outputs to streamlit outputs 
+#Display the return outputs in Streamlit 
 st.write('The **monthly cashflow** :sunglasses: is :')
 st.write(monthly_cash)
 st.write("The **cap rate** is: ")
 st.write(cap_return)
 st.write("The **cash on cash return rate** is: ")
 st.write(cash_percent)
-
