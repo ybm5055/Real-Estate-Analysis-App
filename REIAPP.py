@@ -146,12 +146,12 @@ st.write("The **cash on cash return rate** is: ")
 st.write(cash_percent)
 
 st.sidebar.subheader("About Author")
-    text = """\
-    - Name: Brian Yu
-    - Occupation: Analytics Consultant
-    - Interests: Investing and fitness
+text = """\
+   - Name: Brian Yu
+   - Occupation: Analytics Consultant
+   - Interests: Investing and fitness
     
-    - [**Linkedin**](https://www.linkedin.com/in/brian-boming-yu-00206994/)
+   - [**Linkedin**](https://www.linkedin.com/in/brian-boming-yu-00206994/)
     **Thanks for checking this out!**
       """
 st.sidebar.markdown(text)
