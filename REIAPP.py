@@ -122,19 +122,19 @@ st.subheader("Return Metrics")
 # property_tax = input("Enter the tax rate:  ")
 #We have to change these generic inputs to streamlit inputs
 
-st.sidebar.markdown("**Purchase_Info:** ")         
+st.sidebar.markdown("**Purchase Info:** ")         
 #trial = st.sidebar.text_input("Enter the listing URL:   ")
 
 Price = st.sidebar.text_input(label = "Enter the Purchase Price: ",value ='100000' )#value = trial if trial is not None else '100000')
 down_payment_percent = st.sidebar.slider("Enter the Down Payment Rate (% of rent):   ", 0,100,20)
 Annual_Interest_Rate = st.sidebar.text_input("Enter the Annual Interest Rate (% of rent):   ", value = '3.5')
 
-st.sidebar.markdown("**Revenue_Variables:** ")
+st.sidebar.markdown("**Revenue Variables:** ")
 #st.sidebar.text("Revenue Variables: ") 
 rent_amt = st.sidebar.text_input("Enter the monthly rent price:   ", value = '1000')
 vacancy = st.sidebar.text_input("Enter the vacancy rate (% of rent):   ", value = '5')
 
-st.sidebar.markdown("**Expense_Variables:** ")
+st.sidebar.markdown("**Expense Variables:** ")
 #st.sidebar.text("Expense Variables: ") 
 property_mgmt = st.sidebar.slider("Property management fee(% of rent):   ", 0, 15, 10)
 property_tax = st.sidebar.slider("Property tax rate(% of price):", 0.0, 3.0, 1.5)
