@@ -73,9 +73,9 @@ st.title('Real Estate Investment Analysis App')
 text = """
     ## Overview: ##
     ---------------------
-    This App was created because the author was too lazy and bored to open the excel model for a deal analysis, and decided to spend hours on creating an app with streamlit for the first time instead :upside_down_face:\n
+    This App was created because the author was bored of using his excel model for a real estate deal analysis one day, and decided to spend hours on creating an app with streamlit for the first time instead :upside_down_face:\n
     He did think it was a fun experience and streamlit is pretty cool.\n
-    If you are a real estate investor and want to take a break from the spreadsheets, feel free to use this for a quick analysis on the COC return and Cap Rate by simply entering the variables below :point_down:\n
+    If you are a real estate investor and want to take a break from the spreadsheets, feel free to use this for a simple and quick analysis on the COC return and Cap Rate by entering the variables below :point_down:\n
     ---------------------
     """
 st.sidebar.markdown(text)
@@ -94,7 +94,7 @@ st.subheader("Return Metrics")
 st.sidebar.subheader("Purchase Info: ")         
 
 Price = st.sidebar.text_input(label = "Enter the Purchase Price: ",value ='100000' )#value = trial if trial is not None else '100000')
-down_payment_percent = st.sidebar.slider("Enter the Down Payment Rate (% of rent):   ", 0,100,20)
+down_payment_percent = st.sidebar.slider("Enter the Down Payment Rate (% of purchase price):   ", 0,100,20)
 Annual_Interest_Rate = st.sidebar.text_input("Enter the Annual Interest Rate (% of rent):   ", value = '3.5')
 
 st.sidebar.subheader("Revenue Variables: ")
