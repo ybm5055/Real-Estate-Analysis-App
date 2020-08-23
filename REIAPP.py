@@ -95,7 +95,7 @@ st.sidebar.subheader("Purchase Info: ")
 
 Price = st.sidebar.text_input(label = "Enter the Purchase Price: ",value ='100000' )#value = trial if trial is not None else '100000')
 down_payment_percent = st.sidebar.slider("Enter the Down Payment Rate (% of purchase price):   ", 0,100,20)
-Annual_Interest_Rate = st.sidebar.text_input("Enter the Annual Interest Rate (% of rent):   ", value = '3.5')
+Annual_Interest_Rate = st.sidebar.text_input("Enter the Annual Interest Rate (%):   ", value = '3.5')
 
 st.sidebar.subheader("Revenue Variables: ")
 #st.sidebar.text("Revenue Variables: ") 
@@ -150,7 +150,7 @@ st.sidebar.subheader("About Author")
 text = """\
    - Name: Brian Yu
    - Occupation: Analytics Consultant
-   - Interests: Investing and fitness 
+   - Interests: Investing, data analysis and fitness
    - [**Linkedin**](https://www.linkedin.com/in/brian-boming-yu-00206994/) \n
    **Thanks for checking this out!**
       """
