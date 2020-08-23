@@ -47,7 +47,7 @@ def mortgage_monthly(price,years,Annual_Interest_Rate,down_payment_percent):
     loan = price - down
     months = years*12
     interest_monthly = (Annual_Interest_Rate/100)/12
-    payment = np.pmt(interest_monthly, months, loan)
+    payment =  numpy_financial.pmt(interest_monthly, months, loan)
     
     
     return(-payment)
